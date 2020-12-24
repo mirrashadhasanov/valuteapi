@@ -17,5 +17,15 @@ public class RestApi {
         return request.requestResponse();
     }
 
+    @GetMapping("hash")
+    public HashMap getHashTest(){
+        HashMap hashMap = new HashMap();
+
+        hashMap.put("salam0", "Aleykum");
+        hashMap.put("salam1", "Aleykum");
+        hashMap.put("salam2", "Aleykum");
+
+        return hashMap;
+    }
 
 }
