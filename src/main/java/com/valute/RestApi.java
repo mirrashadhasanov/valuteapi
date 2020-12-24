@@ -3,12 +3,15 @@ package com.valute;
 import com.valute.request.Request;
 import com.valute.request.RequestJsonAll;
 import com.valute.request.RequestString;
+import com.valute.request.Value;
 import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/")
@@ -87,6 +90,33 @@ public class RestApi {
         }
 
         return jsonObject;
+    }
+
+    @GetMapping("list")
+    public List<Value> getRequestList(){
+
+        List<Value> values = new ArrayList<>();
+
+
+
+        RequestJsonAll requestJsonAll = new RequestJsonAll();
+
+        String[] pairs = requestJsonAll.requestResponse().split(",");
+
+        for (int i=0; i<pairs.length; i++) {
+            String pair = pairs[i];
+            String[] keyValue = pair.split(":");
+
+            Value value = new Value();
+            value.setCode(keyValue[0]);
+            value.setName(keyValue[1]);
+            value.setValute(keyValue[2]);
+
+            values.add(value);
+        }
+
+        return values;
+
     }
 
 }
