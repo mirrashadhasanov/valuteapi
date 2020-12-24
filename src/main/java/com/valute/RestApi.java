@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class RestApi {
 
     @GetMapping("hashmap")
-    public HashMap getRequest(){
+    public String getRequest(){
         Request request = new Request();
         return request.requestResponse();
     }

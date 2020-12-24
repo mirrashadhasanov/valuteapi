@@ -8,6 +8,7 @@ import org.xml.sax.InputSource;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -23,7 +24,7 @@ public class Request {
 
     HashMap valMap = new HashMap<>();
 
-    public HashMap requestResponse(){
+    public String requestResponse(){
         try {
             URL obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -51,15 +52,18 @@ public class Request {
 
                     valMap.put(code, value);
                 }
-                return valMap;
+                String content = valMap.toString();
+                return content;
 
             } else {
                 valMap.put("cavab", "Hec bir melumat tapilmadi");
-                return valMap;
+                String content = valMap.toString();
+                return content;
             }
         } catch (Exception e) {
             valMap.put("error", e);
-            return valMap;
+            String content = valMap.toString();
+            return content;
         }
     }
 }
